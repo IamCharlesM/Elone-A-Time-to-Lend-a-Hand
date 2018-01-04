@@ -75,6 +75,10 @@
     "../img/players/enemy2.png",
     "../img/players/enemy3.png",
     "../img/players/main.png",
+    "../img/players/man-se.png",
+    "../img/players/man-sw.png",
+    "../img/players/man-ne.png",
+    "../img/players/man-nw.png",
     "../img/players/detective.png"
   ]
 }
