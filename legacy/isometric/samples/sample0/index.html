@@ -146,27 +146,27 @@
 
                     let enemy = [{
                             id: 0,
-                            image: playerImages.files["enemy1.png"],
-                            xPos: 2,
-                            yPos: 8
+                            image: playerImages.files["man-se.png"],
+                            xPos: 4,
+                            yPos: 11
                         },
                         {
                             id: 1,
-                            image: playerImages.files["enemy1.png"],
-                            xPos: 2,
-                            yPos: 9
+                            image: playerImages.files["man-se.png"],
+                            xPos: 4,
+                            yPos: 13
                         },
                         {
                             id: 2,
-                            image: playerImages.files["enemy1.png"],
-                            xPos: 30,
+                            image: playerImages.files["man-se.png"],
+                            xPos: 4,
                             yPos: 8
                         },
                         {
                             id: 3,
-                            image: playerImages.files["enemy1.png"],
-                            xPos: 2,
-                            yPos: 30
+                            image: playerImages.files["man-se.png"],
+                            xPos: 4,
+                            yPos: 15
                         }
                     ];
 
@@ -189,6 +189,7 @@
                     let vDesk = "This is the victim's desk"
                     let stainGlass = "We're on the first floor"
                     let wallCandle = "The flame is wavering in an odd fashion."
+                    let standCandle = "The light adds an even more somber feel to the grisly scene."
 
 
 
@@ -203,13 +204,16 @@
 
                     //JSIso controls
                     let input = new CanvasInput(document, CanvasControl());
-                    input.keyboard(function(pressed) {
-                        switch (pressed) {
+                    
+                
+                    input.keyboard(function(pressed, keydown) {
+                      if (!keydown) {
+                          switch (pressed) {
                             case 38:
-                                console.log("Y is " + player.yPos);
+                                
                                 if (Number(mapLayers[1].getTile([player.xPos], [player.yPos - 1])) === 0) {
                                     player.yPos--;
-                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                   console.log("Y is " + player.yPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startX > 0 && player.yPos <= mapLayers[0].getLayout().length - 1 - rangeY / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("down");
@@ -221,10 +225,10 @@
                                 //Controls where the player move when the "right" key is pressed
 
                             case 39:
-                                console.log("x is " + player.xPos);
+                                
                                 if (Number(mapLayers[1].getTile([player.xPos + 1], [player.yPos])) === 0) {
                                     player.xPos++;
-                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                   console.log("x is " + player.xPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startY + rangeY < mapLayers[0].getLayout().length && player.xPos >= 0 + 1 + rangeX / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("left");
@@ -235,10 +239,10 @@
                                 break;
                                 //Controls where the player move when the "down" key is pressed
                             case 40:
-                                console.log("Y is " + player.yPos);
+                                
                                 if (Number(mapLayers[1].getTile([player.xPos], [player.yPos + 1])) === 0) {
                                     player.yPos++;
-                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                   console.log("Y is " + player.yPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startX + rangeX < mapLayers[0].getLayout().length && player.yPos >= 0 + 1 + rangeY / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("right");
@@ -249,10 +253,10 @@
                                 break;
                                 //Controls where the player move when the "left" key is pressed
                             case 37:
-                                console.log("x is " + player.xPos);
+                                
                                 if (Number(mapLayers[1].getTile([player.xPos - 1], [player.yPos])) === 0) {
                                     player.xPos--;
-                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                   console.log("x is " + player.xPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startY > 0 && player.xPos <= mapLayers[0].getLayout().length - 1 - rangeX / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("up");
@@ -273,17 +277,18 @@
                                     console.log(stainGlass);
                                     
                                 };
-                                if (player.xPos == 7 && player.yPos == 6) {
+                                if (player.xPos == 7 && player.yPos == 6 || player.xPos == 6 && player.yPos == 5) {
                                     console.log(vDesk);
                                    
                                 }
-//                                else if (player.xPos == 8 && player.yPos == 5) {
-//                                    console.log(bookCase);
-//                                    return;
-//                                }else if (player.xPos == 5 && player.yPos == 4) {
-//                                    console.log(bookCase);
-//                                    return;
-//                                }
+                             if (player.xPos == 4 && player.yPos == 7 || player.xPos == 4 && player.yPos == 5) {
+                                    console.log(wallCandle);
+                                    return;
+                                }
+                                  if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
+                                    console.log(standCandle);
+                                    return;
+                                }
                                 
                                 
                                 break;
@@ -303,22 +308,23 @@
                                 });
                                 break;
                         }
+                        }
                     });
 
                     function draw() {
                         context.clearRect(0, 0, CanvasControl().width, CanvasControl().height);
                         calculatePaths++;
-                        if (calculatePaths === 100) {
-                            enemy.map(function(e) {
-                                pathfind(e.id, [e.xPos, e.yPos], [player.xPos, player.yPos], mapLayers[1].getLayout(), false).then(function(data) {
-                                    if (data.length > 0 && data[1] !== undefined) {
-                                        e.xPos = data[1].x;
-                                        e.yPos = data[1].y;
-                                    }
-                                });
-                            });
-                            calculatePaths = 0;
-                        }
+//                        if (calculatePaths === 100) {
+//                            enemy.map(function(e) {
+//                                pathfind(e.id, [e.xPos, e.yPos], [player.xPos, player.yPos], mapLayers[1].getLayout(), false).then(function(data) {
+//                                    if (data.length > 0 && data[1] !== undefined) {
+//                                        e.xPos = data[1].x;
+//                                        e.yPos = data[1].y;
+//                                    }
+//                                });
+//                            });
+//                            calculatePaths = 0;
+//                        }
                         for (let i = startY, n = startY + rangeY; i < n; i++) {
                             for (let j = startX, h = startX + rangeX; j < h; j++) {
                                 mapLayers.map(function(layer) {
@@ -356,6 +362,7 @@
                     }
 
                 }
+            
 
                 launch();
 
