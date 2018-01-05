@@ -1,35 +1,4 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title></title>
-    <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000022
-        }
-
-        .gameInfo {
-            position: absolute;
-            right: 0px;
-            top: 0px;
-            width: 200px;
-            height: 24px;
-            background: #222244;
-            text-align: center;
-            color: #FFF;
-        }
-    </style>
-
-    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.9.4/phaser.min.js"></script>-->
-
-    <script data-main="../../config.js" src="../../requirejs/require.js"></script>
-
-    <script type="text/javascript">
-        require([
+   require([
                 'jsiso/canvas/Control',
                 'jsiso/canvas/Input',
                 'jsiso/img/load',
@@ -139,9 +108,9 @@
                     self = this;
                     // Player and suspect models
                     let player = {
-                        image: playerImages.files["detective.png"],
-                        xPos: 4,
-                        yPos: 8,
+                        image: playerImages.files["1.png"],
+                        xPos: 8,
+                        yPos: 6,
                     };
 
                     let enemy = [{
@@ -156,12 +125,12 @@
                             xPos: 4,
                             yPos: 13
                         },
-                        {
-                            id: 2,
-                            image: playerImages.files["man-se.png"],
-                            xPos: 4,
-                            yPos: 8
-                        },
+//                        {
+//                            id: 2,
+//                            image: playerImages.files["man-se.png"],
+//                            xPos: 4,
+//                            yPos: 8
+//                        },
                         {
                             id: 3,
                             image: playerImages.files["man-se.png"],
@@ -184,12 +153,16 @@
                     let rain = null;
                     
                     //Here you can change the text
-                    let bookCase = "This is a book case"
-                    let lamp = "This is a lamp"
+                    let bookCase = "packed tightly with a number of books that I have no interest in, there are some on astology, numerology, and other studies that aren't seen as very useful. There seemst obe one that's missing"
+                    let lamp = "There's nothing unusual about the lamp."
                     let vDesk = "This is the victim's desk"
-                    let stainGlass = "We're on the first floor"
+                    let stainGlass = "It looks as if the window is open, I think I can climb through."
                     let wallCandle = "The flame is wavering in an odd fashion."
                     let standCandle = "The light adds an even more somber feel to the grisly scene."
+                    let vDoor = "The door to the victim's room is locked, there are no signs of forced entry, thankfully, I have the key."
+                    let eDoor = "I leave the room."
+                    let sDoor = "I enter the room."
+                    
 
 
 
@@ -210,10 +183,11 @@
                       if (!keydown) {
                           switch (pressed) {
                             case 38:
-                                
+                                player.image= playerImages.files["1.png"];
                                 if (Number(mapLayers[1].getTile([player.xPos], [player.yPos - 1])) === 0) {
                                     player.yPos--;
-                                   console.log("Y is " + player.yPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
+                               //  console.log("Y is " + player.yPos); 
+                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startX > 0 && player.yPos <= mapLayers[0].getLayout().length - 1 - rangeY / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("down");
@@ -225,10 +199,11 @@
                                 //Controls where the player move when the "right" key is pressed
 
                             case 39:
-                                
+                                player.image= playerImages.files["4.png"];
                                 if (Number(mapLayers[1].getTile([player.xPos + 1], [player.yPos])) === 0) {
                                     player.xPos++;
-                                   console.log("x is " + player.xPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                 //  console.log("x is " + player.xPos); 
+                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startY + rangeY < mapLayers[0].getLayout().length && player.xPos >= 0 + 1 + rangeX / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("left");
@@ -242,7 +217,9 @@
                                 
                                 if (Number(mapLayers[1].getTile([player.xPos], [player.yPos + 1])) === 0) {
                                     player.yPos++;
-                                   console.log("Y is " + player.yPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                    player.image= playerImages.files["3.png"];
+                                  // console.log("Y is " + player.yPos); 
+                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startX + rangeX < mapLayers[0].getLayout().length && player.yPos >= 0 + 1 + rangeY / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("right");
@@ -256,7 +233,9 @@
                                 
                                 if (Number(mapLayers[1].getTile([player.xPos - 1], [player.yPos])) === 0) {
                                     player.xPos--;
-                                   console.log("x is " + player.xPos); mapLayers[1].applyFocus(player.xPos, player.yPos);
+                                    player.image= playerImages.files["2.png"];
+                                   //console.log("x is " + player.xPos); 
+                                    mapLayers[1].applyFocus(player.xPos, player.yPos);
                                     if (startY > 0 && player.xPos <= mapLayers[0].getLayout().length - 1 - rangeX / 2) {
                                         mapLayers.map(function(layer) {
                                             layer.move("up");
@@ -270,25 +249,54 @@
                                 //activate event when "space" is pressed
                             case 32:
                                 if (player.xPos == 5 && player.yPos == 4) {
-                                    console.log(bookCase);
+                                    alert(bookCase);
                                     
                                 };
                                 if (player.xPos == 4 && player.yPos == 6) {
-                                    console.log(stainGlass);
+                                    alert(stainGlass);
                                     
                                 };
                                 if (player.xPos == 7 && player.yPos == 6 || player.xPos == 6 && player.yPos == 5) {
-                                    console.log(vDesk);
+                                    alert(vDesk);
                                    
                                 }
                              if (player.xPos == 4 && player.yPos == 7 || player.xPos == 4 && player.yPos == 5) {
-                                    console.log(wallCandle);
+                                    alert(wallCandle);
                                     return;
                                 }
                                   if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
-                                    console.log(standCandle);
+                                    alert(standCandle);
+                                    
+                                } 
+                                  if (player.xPos == 13 && player.yPos == 6 ) {
+                                    alert(eDoor);
+                                      player.xPos = 15
+                                  }
+                                  else if (player.xPos == 15) {
+                                          console.log(vDoor);
+                                         player.xPos = 13
+                                    
+                               } 
+                                  return;
+                                  
+                                  if (player.xPos == 17 && player.yPos == 6 ) {
+                                    console.log(sDoor);
+                                      player.xPos = 19
+                                  } else if (player.xPos == 19) {
+                                          console.log(eDoor);
+                                         player.xPos = 17
                                     return;
-                                }
+                               }
+//                                      if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
+//                                    console.log(standCandle);
+//                                    return;
+//                                } if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
+//                                    console.log(standCandle);
+//                                    return;
+//                                } if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
+//                                    console.log(standCandle);
+//                                    return;
+//                                }
                                 
                                 
                                 break;
@@ -363,16 +371,35 @@
 
                 }
             
+            function drawBubble(ctx, x, y, w, h, radius)
+{
+  var r = x + w;
+  var b = y + h;
+  ctx.beginPath();
+  ctx.strokeStyle="black";
+  ctx.lineWidth="2";
+  ctx.moveTo(x+radius, y);
+  ctx.lineTo(x+radius/2, y-10);
+  ctx.lineTo(x+radius * 2, y);
+  ctx.lineTo(r-radius, y);
+  ctx.quadraticCurveTo(r, y, r, y+radius);
+  ctx.lineTo(r, y+h-radius);
+  ctx.quadraticCurveTo(r, b, r-radius, b);
+  ctx.lineTo(x+radius, b);
+  ctx.quadraticCurveTo(x, b, x, b-radius);
+  ctx.lineTo(x, y+radius);
+  ctx.quadraticCurveTo(x, y, x+radius, y);
+  ctx.stroke();
+}
+function dispQuote() 
+{
+  var canvas = document.getElementById('canvas1');
+//  var ctx = canvas.getContext('2d'); 
+  drawBubble(ctx, 10,60,220, 90, 20);
+}
+window.onload=dispQuote;
+            
 
                 launch();
 
             });
-    </script>
-
-
-</head>
-
-<body>
-
-</body>
-</html>

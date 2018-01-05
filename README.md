@@ -1,1 +1,0 @@
-# Elone-A-Time-to-Lend-a-Hand
