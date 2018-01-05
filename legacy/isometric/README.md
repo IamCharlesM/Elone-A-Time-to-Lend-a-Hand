@@ -1,84 +1,38 @@
-HTML5 Canvas Tile Engine
-=========
+
+Elone: A Time to Lend a Hand
+===================
+
+It's late in the evening, you're called to the scene of an apparent suicide, the victim is in a locked room, with a gun in one hand, and a hole where their eye used to be. Your job is to figure out if this was actually someone who could no longer stand being in this world, or, was it someone else who didn't *want* them to be here?
+
+----------
 
 
-![JSiso](http://jsiso.com/jsiso.png)
-
-
-This repo contains an MIT Licensed Isometric HTML5 tile engine Copyright © 2014 of Iain Hamilton.
-
-For a list of examples and further details checkout: http://jsiso.com
-
-![noniso](https://cloud.githubusercontent.com/assets/1159739/4778380/9ee88a06-5be7-11e4-9237-45c3020bdc84.jpg)
-
-
-Currently contained features are:
-- Implements AMD through RequireJS
-- Easily build complex isometric 2D.5 layouts or flat 2D layouts
-- Tiled Editor format support
-- Unlimited layer stacking
-- Isometric heightmaps
-- Auto scaling of image dimensions
-- Spritesheet and individual one by one tile image loading
-- RGBA tile values
-- Zooming
-- Rotating
-- Simple Collision
-- AI Pathfinding using Web Workers
-- Custom built Particle Engine
-- Easy fake lighting
-- Player vision limiting
-- Simple player device interaction
-- Apply the same code accross tile formats
-
-
-
-Setup Instructions:
+features
 -------------
 
-1: In each of the samples .html you'll see: ```<script data-main="../../config.js" src="../../requirejs/require.js"></script>```. If you move JsIso and RequireJs location this will require updating.
+StackEdit stores your documents in your browser, which means all your documents are automatically saved locally and are accessible **offline!**
 
-2: config.js contains the requirejs baseUrl set as "/isometric/" by default. Make sure this reflects your base path to the folder containing JsIso & RequireJS.
+> **dependencies:**
+> There are two major paths that need to be addressed in the index.html file, otherwise the game will not run.
 
-3: That should be everything.
+>   *"../../config.js" src="../../requirejs/require.js">"*
+>  *"text/javascript" src="/legacy/isometric/jsiso/app.js"*
 
+> The file structure is extremely important to this game, if any files are moved there are a lot of requirements that will need to be handled.
 
-Particles
-![particles](https://f.cloud.github.com/assets/1159739/1322878/ca65cd72-3453-11e3-97f6-c6b0243787b0.png)
+#### <i class="icon-file"></i> Installation & requirements
 
+A browser that supports Canvas and Javascript are the only requirements to deploy this game
 
-Pathfinding (All cuboids apart from blue are AI)
-Pathfinding calculations are handled via webworkers.
-![ai](https://f.cloud.github.com/assets/1159739/1286661/31621fbc-2fdb-11e3-9e7a-39436670d4ba.png)
+#### <i class="icon-folder-open"></i>Languages used
 
-
-Fog of view and lighting toggled on (blue cuboid represents player)
-![lighting](https://f.cloud.github.com/assets/1159739/1278363/757498b4-2f0f-11e3-97af-5e5042679270.png)
-
-
-Basic dynamic lighting
-![with-lighting](https://f.cloud.github.com/assets/1159739/1277738/28d797b8-2edd-11e3-95f8-4e6177eb81bd.png)
-
-Lighting toggled off
-![no-lighting](https://f.cloud.github.com/assets/1159739/1277736/0fb64586-2edd-11e3-8a73-43645830401c.png)
+Javascript
 
 
 
-Height Maps, Rotation, Auto Shadows, Zoom
-![new-screen](https://f.cloud.github.com/assets/1159739/1273886/fd76d006-2d5c-11e3-8dde-f9d83eba639b.png)
-
-
-Previous tile map zoomed out
-![new-screen2](https://f.cloud.github.com/assets/1159739/1273894/d760ad64-2d5d-11e3-9bf2-77319cce1fc6.png)
 
 
 
-Early Screenshot 1
-![screen1](https://f.cloud.github.com/assets/1159739/1267397/a8c33f7a-2cb9-11e3-8d82-2b5ec4c5f2aa.png)
-
-Early Screenshot 2 
-![screen2](https://f.cloud.github.com/assets/1159739/1267395/94e0ea16-2cb9-11e3-9726-86f312bca9f9.png)
-
-
+----------
 
 
