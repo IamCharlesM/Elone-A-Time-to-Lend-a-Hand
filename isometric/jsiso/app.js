@@ -1,3 +1,5 @@
+   console.log('connected')
+   
    require([
                 'jsiso/canvas/Control',
                 'jsiso/canvas/Input',
