@@ -127,12 +127,6 @@
                             xPos: 4,
                             yPos: 13
                         },
-//                        {
-//                            id: 2,
-//                            image: playerImages.files["man-se.png"],
-//                            xPos: 4,
-//                            yPos: 8
-//                        },
                         {
                             id: 3,
                             image: playerImages.files["man-se.png"],
@@ -198,7 +192,7 @@
                                     }
                                 }
                                 break;
-                                //Controls where the player move when the "right" key is pressed
+                                //Controls where the player moves when the "right" key is pressed
 
                             case 39:
                                 player.image= playerImages.files["4.png"];
@@ -214,7 +208,7 @@
                                     }
                                 }
                                 break;
-                                //Controls where the player move when the "down" key is pressed
+                                //Controls where the player moves when the "down" key is pressed
                             case 40:
                                 
                                 if (Number(mapLayers[1].getTile([player.xPos], [player.yPos + 1])) === 0) {
@@ -230,7 +224,7 @@
                                     }
                                 }
                                 break;
-                                //Controls where the player move when the "left" key is pressed
+                                //Controls where the player moves when the "left" key is pressed
                             case 37:
                                 
                                 if (Number(mapLayers[1].getTile([player.xPos - 1], [player.yPos])) === 0) {
@@ -289,17 +283,6 @@
                                          player.xPos = 17
                                     return;
                                }
-//                                      if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
-//                                    console.log(standCandle);
-//                                    return;
-//                                } if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
-//                                    console.log(standCandle);
-//                                    return;
-//                                } if (player.xPos == 9 && player.yPos == 5 || player.xPos == 10 && player.yPos == 4 || player.xPos == 8 && player.yPos == 4) {
-//                                    console.log(standCandle);
-//                                    return;
-//                                }
-                                
                                 
                                 break;
 
@@ -321,20 +304,10 @@
                         }
                     });
 
+                    // THIS IS CODE TO DRAW THE SHADOWS,I DIDN'T WRITE IT BUT IT BREAKS THE GAME IF I REMOVE IT
                     function draw() {
                         context.clearRect(0, 0, CanvasControl().width, CanvasControl().height);
-                        calculatePaths++;
-//                        if (calculatePaths === 100) {
-//                            enemy.map(function(e) {
-//                                pathfind(e.id, [e.xPos, e.yPos], [player.xPos, player.yPos], mapLayers[1].getLayout(), false).then(function(data) {
-//                                    if (data.length > 0 && data[1] !== undefined) {
-//                                        e.xPos = data[1].x;
-//                                        e.yPos = data[1].y;
-//                                    }
-//                                });
-//                            });
-//                            calculatePaths = 0;
-//                        }
+                        calculatePaths++
                         for (let i = startY, n = startY + rangeY; i < n; i++) {
                             for (let j = startX, h = startX + rangeX; j < h; j++) {
                                 mapLayers.map(function(layer) {
@@ -374,6 +347,7 @@
                 }
             
             function drawBubble(ctx, x, y, w, h, radius)
+            //THIS IS FOR THE PATHING THAT I ENDED UP NOT USING.
 {
   var r = x + w;
   var b = y + h;
